@@ -1,27 +1,35 @@
-import numpy as np
-import torch
 import torch.nn as nn
-import torch.nn.functional as F
-
-a = torch.tensor([[1,2,3],[4,5,6]],dtype=float)
-
-# b = a.gather(dim = 1, index = torch.tensor([[1],[2]]))
-
-# print(b.squeeze())
-
-a = torch.tensor([1,2,3],dtype=float)
-# b = torch.tensor([2,3,4],dtype=float).unsqueeze(1)
-# loss = nn.MSELoss()(a,b)
-# print(loss)
-
-b=F.softmax(a)
-print(b)
-
-c = [{"a":1,"b":2},{"a":3,"b":4}]
-print(c[1]["a"])
-
 from torch.distributions import Categorical
+import torch
+import gym
+env = gym.make('CartPole-v0')
+env.reset()
 
-m = Categorical(a)
-action = m.log_prob(torch.tensor(0.5))
-print(action)
+# # for i in range(1000):
+print(env.action_space.sample())
+print(env.step(env.action_space.sample()))
+# # env.render()
+# print(torch.tensor(state).unsqueeze(0))
+
+# a = torch.tensor([])
+# a = torch.cat((a, torch.tensor(state).unsqueeze(0)), 0)
+# a = torch.cat((a, torch.tensor(state).unsqueeze(0)), 0)
+# print(a)
+
+# print(torch.zeros(5))
+
+# print(env.observation_space)
+
+
+# m = Categorical(torch.tensor([[0.1, 0.2, 0.3, 0.4],[0.8,0.1,0.1,0]]))
+# a = m.sample()
+# print(a, m.log_prob(a))
+
+# a = [(1,2),(3,4)]
+# b,c= zip(*a)
+# print(b,c)
+a = torch.FloatTensor([1])
+b = torch.FloatTensor()
+print(nn.MSELoss()(a, b))
+print(a.size())
+print(b.size())

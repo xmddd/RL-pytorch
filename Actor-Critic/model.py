@@ -77,7 +77,7 @@ class A2C():
         action = torch.tensor(action, dtype=torch.float)
         pr_actions = self.policy_net(state)
         m = Categorical(pr_actions)
-        actor_loss = - m.log_prob(action) * td_error
+        actor_loss = - m.log_prob(action) * td_error.detach()
 
         critic_loss.backward(retain_graph=True)
         actor_loss.backward()
